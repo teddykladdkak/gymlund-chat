@@ -7,8 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(3000, () => console.log('Webhook server is listening, port 3000'));
 
 eval(fs.readFileSync('gymlund.js')+'');
-//console.log(gyms);
-//app.get('/', verificationController);
+
 app.get('/', function (req, res) {
 	const hubChallenge = req.query['hub.challenge'];
 	const hubMode = req.query['hub.mode'];
@@ -19,7 +18,7 @@ app.get('/', function (req, res) {
 		res.status(403).end();
 	};
 })
-//app.post('/', messageWebhookController);
+
 app.post('/', function(req, res) {
 	if (req.body.object === 'page') {
 		console.log(req.body.entry);
@@ -99,7 +98,6 @@ function processMessage(event){
 		}else if(messagearray.length == 0){
 
 		}else{
-			//\n-  + messagearray.join('\n- ')
 			var questiontext = '';
 			global.storedval = messagearray;
 			for (var i = 0; i < messagearray.length; i++){
